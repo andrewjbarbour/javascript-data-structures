@@ -81,5 +81,4 @@ export default class PriorityQueue {
   const getLeft = current => current * 2;
   const getRight = current => current * 2 + 1;
   
-  module.exports = PriorityQueue;
   
