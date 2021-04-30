@@ -42,6 +42,19 @@ export default class Graph {
         }
     }
 
+    depthFirstTraversal(start, callback, visitedVertices=[start]){
+        start.edges.forEach(edge => {
+
+            callback(start);
+
+            const neighbor = edge[0].end;    
+            if(!visitedVertices.includes(neighbor)){
+                visitedVertices.push(neighbor);
+                depthFirstTraversal(neighbor, callback, visitedVertices);
+            }
+        })
+    }
+
     print() {
         const vertexList = this.vertices || [];
         vertexList.forEach(vertex => vertex.print());
