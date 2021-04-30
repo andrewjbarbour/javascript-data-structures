@@ -1,5 +1,5 @@
-import Edge from './Edge.js';
 import Vertex from './Vertex.js';
+import Queue from './Queue.js';
 
 export default class Graph {
     constructor(isWeighted=false, isDirected=false){
@@ -44,9 +44,7 @@ export default class Graph {
 
     depthFirstTraversal(start, callback, visitedVertices=[start]){
         start.edges.forEach(edge => {
-
             callback(start);
-
             const neighbor = edge[0].end;    
             if(!visitedVertices.includes(neighbor)){
                 visitedVertices.push(neighbor);
@@ -54,6 +52,23 @@ export default class Graph {
             }
         })
     }
+
+    breadthFirstTraversal(start){
+        const visitedVertices = [start];
+        const visitQueue = new Queue();
+        visitQueue.enqueue(start);
+        while(!visitQueue.isEmpty()){
+            const current = visitQueue.dequeue();
+            console.log(current.data);
+            current.edges.forEach(edge => {
+                const neighbor = edge.end;
+                if(!visitedVertices.includes[neighbor]){
+                    visitedVertices.push(neighbor);
+                    visitedQueue.enqueue(neighbor);
+                }
+            })
+        }
+    };
 
     print() {
         const vertexList = this.vertices || [];
