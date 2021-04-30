@@ -1,4 +1,3 @@
-import Graph from '../data-structures/Graph.js';
 import PriorityQueue from '../data-structures/PriorityQueue.js';
 
 export const dijkstras = (graph, startingVertex) => {
@@ -13,19 +12,19 @@ export const dijkstras = (graph, startingVertex) => {
 
         distances[startingVertex.data] = 0;
         while(!queue.isEmpty()){
-            const vertex = queue.popMin();
+            const { vertex } = queue.popMin();
+
+            vertex.edges.forEach(edge => {
+                const alternate = edge.weight + distances[vertex.data];
+                const neighborValue = edge.end.data;
+
+                if(alternate < distances[neighborValue]){
+                    distances[neighborValue] = alternate;
+                    previous[neighborValue] = vertex;
+                    queue.add({vertex: edge.end, priority: distances[neighborValue]}) 
+                }               
+            });
         }
-
-        vertex.edges.forEach(edge => {
-            const alternate = edge.weight + distances[vertex.data];
-            const neighborValue = edge.end.data;
-
-            if(alternate < distances[neighborValue]){
-                distances[neighborValue] = alternate;
-                previous[neighborValue] = vertex;
-                queue.add({vertex: edge.end, priority: distances[neighborValue]}) 
-            }               
-        });
         return {distances, previous};
     };
 
