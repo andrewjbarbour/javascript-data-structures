@@ -24,13 +24,29 @@ export default class MinHeap{
     }
 
     heapify(){
+        console.log("Heapifying");
         let current = 1;
         let leftChild = this.getLeft(current);
         let rightChild = this.getRight(current);
+
         while(this.canSwap(current, leftChild, rightChild)){
-            leftChild = this.getLeft(current);
-            rightChild = this.getRight(current);
-        }
+            if(this.exists(leftChild) && this.exists(rightChild)){
+                if(leftChild < rightChild){
+                    this.swap(current, leftChild);
+                    current = leftChild
+                }
+                else if(rightChild < leftChild){
+                    this.swap(current, rightChild)
+                    current = rightChild;
+                }
+            }
+            else{
+                this.swap(current, leftChild);
+                current = leftChild;
+            }
+            leftChild =getLeft(current);
+            rightChild = getRight(current);
+         }
     }
 
     exists(index){
@@ -47,6 +63,7 @@ export default class MinHeap{
         console.log(`Removing min ${min} from the heap`);
         this.size--;
         console.log(this.heap);
+        this.heapify();
         return min;
     }
 
