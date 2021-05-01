@@ -50,7 +50,12 @@ export default class MinHeap{
         return min;
     }
 
-    canSwap()
+    canSwap(){
+        return (
+            this.exists(leftChild) && this.heap[current] > this.heap[leftChild] 
+            || this.exists(rightChild) && this.heap[current] > this.heap[rightChild] 
+        );
+    }
 
     swap(a, b){
         [this.heap[a], this.heap[b]] = [this.heap[b], this.heap[a]];
