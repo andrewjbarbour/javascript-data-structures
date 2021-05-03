@@ -1,6 +1,5 @@
 //Dynamic programming algorithm for the knapsack problem  O(index * weight)
-
-const knapsack = function(weightCap, weights, values) {
+export const dynamicknapsack = function(weightCap, weights, values) {
     const numItem = weights.length;
     const matrix = new Array(numItem);
     

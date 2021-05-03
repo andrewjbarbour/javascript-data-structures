@@ -1,4 +1,4 @@
-const sieveOfEratosthenes = (limit) => {
+export const sieveOfEratosthenes = (limit) => {
     // Handle edge cases
     if (limit <= 1) {
       return [];
