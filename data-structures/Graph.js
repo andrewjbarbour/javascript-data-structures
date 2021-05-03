@@ -11,7 +11,6 @@ export default class Graph {
     addVertex(data) {
         const newVertex = new Vertex(data);
         this.vertices.push(newVertex);
-
         return newVertex;
     }
 
