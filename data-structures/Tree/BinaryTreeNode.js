@@ -25,11 +25,24 @@ export default class BinaryTreeNode{
         : this.right = new BinaryTreeNode(value);
     }
 
+    getHeight(root=this){
+        let leftHeight = 0;
+        let rightHeight = 0;
+        if(root.left !== null){
+            leftHeight = this.getHeight(root.left) + 1;
+        }
+        if(root.right !==null){
+            rightHeight = this.getHeight(root.right) + 1;
+        }
+        return Math.max(leftHeight, rightHeight);
+    }
+
     traverseInOrder(){
         let traverse = [];
         if (this.left){
             traverse = traverse.concat(this.left.traverseInOrder());
         }
+        traverse.push(this.value);
         if (this.right){
             traverse = traverse.concat(this.right.traverseInOrder());
         }
