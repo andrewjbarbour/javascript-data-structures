@@ -1,4 +1,4 @@
-import '../data-structures/Tree/BinaryTreeNode.js';
+import BinaryTreeNode from '../data-structures/Tree/BinaryTreeNode.js';
 
 export const isBST = (root) => {
     //Given a root node, checks whether a tree is a binary search tree

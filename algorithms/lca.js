@@ -1,4 +1,4 @@
-import '../data-structures/Tree/TreeNode.js';
+import BinaryTreeNode from '../data-structures/Tree/BinaryTreeNode.js';
 
 export const binarySearchTreeLca = (root, value1, value2) => {
     /*Given a root node and two node values of a binary search tree, finds the
