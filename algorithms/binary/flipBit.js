@@ -16,5 +16,3 @@ export const flipBit = (num) => {
     }
     return maxLength;
 }
-
-console.log(flipBit(17329349395));
