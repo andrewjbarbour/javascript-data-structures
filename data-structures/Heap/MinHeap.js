@@ -1,92 +1,95 @@
-export default class MinHeap{
-    constructor(){
-        this.heap = [null];
-        this.size = 0;
-    }
+export default class MinHeap {
+  constructor() {
+    this.heap = [null];
+    this.size = 0;
+  }
 
-    add(value){
-        this.heap.push(value);
-        console.log(value);
-        console.log(this.heap);
-        this.size++;
-        this.bubbleUp();
-    }
+  add(value) {
+    this.heap.push(value);
+    console.log(value);
+    console.log(this.heap);
+    this.size++;
+    this.heapifyUp();
+  }
 
-    bubbleUp(){
-        console.log('Bubble up');
-        let current = this.size;
-        while(current > 1 && this.heap[current] < this.heap[this.getParent(current)]){
-            console.log(this.heap);
-            console.log(`A swap will occur between ${current} and ${this.getParent(current)}`);
-            this.swap(current, getParent(current));
-            current = getParent(current);
+  heapifyUp() {
+    console.log("Heapify up");
+    let current = this.size;
+    while (
+      current > 1 &&
+      this.heap[current] < this.heap[this.getParent(current)]
+    ) {
+      console.log(this.heap);
+      console.log(
+        `A swap will occur between ${current} and ${this.getParent(current)}`
+      );
+      this.swap(current, getParent(current));
+      current = getParent(current);
+    }
+  }
+
+  heapify() {
+    console.log("Heapifying");
+    let current = 1;
+    let leftChild = this.getLeft(current);
+    let rightChild = this.getRight(current);
+
+    while (this.canSwap(current, leftChild, rightChild)) {
+      if (this.exists(leftChild) && this.exists(rightChild)) {
+        if (leftChild < rightChild) {
+          this.swap(current, leftChild);
+          current = leftChild;
+        } else if (rightChild < leftChild) {
+          this.swap(current, rightChild);
+          current = rightChild;
         }
+      } else {
+        this.swap(current, leftChild);
+        current = leftChild;
+      }
+      leftChild = getLeft(current);
+      rightChild = getRight(current);
     }
+  }
 
-    heapify(){
-        console.log("Heapifying");
-        let current = 1;
-        let leftChild = this.getLeft(current);
-        let rightChild = this.getRight(current);
+  exists(index) {
+    return index <= this.size;
+  }
 
-        while(this.canSwap(current, leftChild, rightChild)){
-            if(this.exists(leftChild) && this.exists(rightChild)){
-                if(leftChild < rightChild){
-                    this.swap(current, leftChild);
-                    current = leftChild
-                }
-                else if(rightChild < leftChild){
-                    this.swap(current, rightChild)
-                    current = rightChild;
-                }
-            }
-            else{
-                this.swap(current, leftChild);
-                current = leftChild;
-            }
-            leftChild =getLeft(current);
-            rightChild = getRight(current);
-         }
+  popMin() {
+    if (!this.size) {
+      return null;
     }
+    console.log(`Swapping ${this.heap[1]} with ${this.heap[this.size]}`);
+    this.swap(1, this.size);
+    const min = this.heap.pop();
+    console.log(`Removing min ${min} from the heap`);
+    this.size--;
+    console.log(this.heap);
+    this.heapify();
+    return min;
+  }
 
-    exists(index){
-        return index <= this.size;
-    }
+  canSwap() {
+    return (
+      (this.exists(leftChild) && this.heap[current] > this.heap[leftChild]) ||
+      (this.exists(rightChild) && this.heap[current] > this.heap[rightChild])
+    );
+  }
 
-    popMin(){
-        if(!this.size){
-            return null;
-        }
-        console.log(`Swapping ${this.heap[1]} with ${this.heap[this.size]}`);
-        this.swap(1, this.size);
-        const min = this.heap.pop();
-        console.log(`Removing min ${min} from the heap`);
-        this.size--;
-        console.log(this.heap);
-        this.heapify();
-        return min;
-    }
+  swap(a, b) {
+    [this.heap[a], this.heap[b]] = [this.heap[b], this.heap[a]];
+  }
 
-    canSwap(){
-        return (
-            this.exists(leftChild) && this.heap[current] > this.heap[leftChild] 
-            || this.exists(rightChild) && this.heap[current] > this.heap[rightChild] 
-        );
-    }
+  getParent(current) {
+    return Math.floor(current / 2);
+  }
 
-    swap(a, b){
-        [this.heap[a], this.heap[b]] = [this.heap[b], this.heap[a]];
-    }
+  getLeft(current) {
+    return current * 2;
+  }
 
-    getParent(current){
-        return Math.floor(current / 2);
-    }
-
-    getLeft(current){
-        return current * 2;
-    }
-
-    getRight(current){
-        return current * 2 + 1;
-    }
+  getRight(current) {
+    return current * 2 + 1;
+  }
 }
