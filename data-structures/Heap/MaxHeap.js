@@ -70,7 +70,7 @@ export default class MaxHeap {
     return min;
   }
 
-  canSwap() {
+  canSwap(current, leftChild, rightChild) {
     return (
       (this.exists(leftChild) && this.heap[current] < this.heap[leftChild]) ||
       (this.exists(rightChild) && this.heap[current] < this.heap[rightChild])

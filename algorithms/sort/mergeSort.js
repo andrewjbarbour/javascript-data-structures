@@ -1,8 +1,6 @@
 const mergeSort = (startArray) => {
   const length = startArray.length;
-  if (length === 1) {
-    return startArray;
-  }
+  if (length === 1) return startArray;
 
   const mid = Math.floor(length / 2);
   const leftArray = startArray.slice(0, mid);
