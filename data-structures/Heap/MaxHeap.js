@@ -56,6 +56,13 @@ export default class MaxHeap {
     return index <= this.size;
   }
 
+  peek() {
+    if (this.heap.length === 0) {
+      return null;
+    }
+    return this.heap[0];
+  }
+
   popMin() {
     if (!this.size) {
       return null;
