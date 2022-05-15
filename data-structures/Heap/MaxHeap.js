@@ -60,7 +60,7 @@ export default class MaxHeap {
     if (this.heap.length === 0) {
       return null;
     }
-    return this.heap[0];
+    return this.heap[1];
   }
 
   popMin() {

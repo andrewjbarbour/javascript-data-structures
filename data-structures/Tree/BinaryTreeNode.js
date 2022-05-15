@@ -49,6 +49,28 @@ export default class BinaryTreeNode {
     return traverse;
   }
 
+  traversePreOrder() {
+    let traverse = [];
+    traverse.push(this.value);
+    if (this.left) {
+      traverse = traverse.concat(this.left.traversePreOrder());
+    }
+    if (this.right) {
+      traverse = traverse.concat(this.right.traversePreOrder());
+    }
+  }
+
+  traversePostOrder() {
+    let traverse = [];
+    if (this.left) {
+      traverse = traverse.concat(this.left.traversePostOrder());
+    }
+    if (this.right) {
+      traverse = traverse.concat(this.right.traversePostOrder());
+    }
+    traverse.push(this.value);
+  }
+
   nextNode(node) {
     if (node == null) return null;
     if (node.right !== null) {
