@@ -1,6 +1,6 @@
 const quickSort = (array, leftBound = 0, rightBound = array.length - 1) => {
   if (array.length > 1) {
-    if (rightBound > leftBound) {
+    while (rightBound > leftBound) {
       const pivotIndex = partition(array, leftBound, rightBound);
       quickSort(array, leftBound, pivotIndex - 1);
       quickSort(array, pivotIndex, rightBound);

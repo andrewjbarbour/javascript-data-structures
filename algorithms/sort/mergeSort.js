@@ -9,7 +9,7 @@ const mergeSort = (startArray) => {
   return merge(mergeSort(leftArray), mergeSort(rightArray));
 };
 
-merge = (leftArray, rightArray) => {
+function merge(leftArray, rightArray) {
   const sortedArray = [];
   while (leftArray.length > 0 && rightArray.length > 0) {
     if (leftArray[0] < rightArray[0]) {
@@ -21,4 +21,6 @@ merge = (leftArray, rightArray) => {
     }
   }
   return sortedArray.concat(leftArray).concat(rightArray);
-};
+}
+
+console.log(mergeSort([45, 123, 3249, 12, 322, 3]));
